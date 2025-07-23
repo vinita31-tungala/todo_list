@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+form input[type="text"] {
+    width: 65%;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+form button {
+    padding: 8px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.editable {
+    width: 60%;
+}
+

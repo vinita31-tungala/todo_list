@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: silver;
+            padding: 20px;
+        }
+        .card {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">📝 My To-Do List</h2>
+
+        <!-- Add Task Form -->
+        <form method="POST" action="/add" class="input-group mb-3">
+            <input type="text" name="text" class="form-control" placeholder="Add new task..." required>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <!-- Filter Buttons -->
+        <div class="btn-group mb-3">
+            <a href="/" class="btn btn-dark">All</a>
+            <a href="/" class="btn btn-warning">Pending</a>
+            <a href="/completed" class="btn btn-success">Completed</a>
+            <a href="/deleted" class="btn btn-danger">Deleted</a>
+        </div>
+
+        <!-- Task Cards -->
+        {% for todo in tasks %}
+        <div class="card">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <form method="POST" action="/edit/{{ todo[0] }}" class="d-flex w-100">
+                    {% if todo[2] == 'completed' %}
+                        <input class="form-control me-2" name="edited_task" value="{{ todo[1] }}" readonly style="text-decoration: line-through;">
+                    {% else %}
+                        <input class="form-control me-2" name="edited_task" value="{{ todo[1] }}">
+                    {% endif %}
+                    
+                    {% if todo[2] != 'deleted' %}
+                        <a href="/complete/{{ todo[0] }}" class="btn btn-success me-2">✅</a>
+                        <button class="btn btn-info me-2" type="submit">✏️</button>
+                        <a href="/delete/{{ todo[0] }}" class="btn btn-danger">🗑️</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+
